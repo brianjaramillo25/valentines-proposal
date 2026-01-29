@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5e6 50%, #e6f3ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background: linear-gradient(135deg, #ffeef8 0%, #fff5e6 50%, #e6f3ff 100%);
+            }
+            50% {
+                background: linear-gradient(135deg, #fff5e6 0%, #e6f3ff 50%, #ffeef8 100%);
+            }
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.2);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hearts {
+            font-size: 40px;
+            margin-bottom: 20px;
+            letter-spacing: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .gif-container {
+            margin: 30px 0;
+            position: relative;
+            height: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .question {
+            font-size: 22px;
+            color: #333;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 14px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            flex: 1;
+            min-width: 140px;
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.5);
+        }
+
+        .btn-yes:active {
+            transform: scale(0.98);
+        }
+
+        .btn-no {
+            background: #e0e0e0;
+            color: #333;
+            flex: 1;
+            min-width: 140px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-no:hover {
+            background: #f0f0f0;
+            transform: translateX(10px);
+        }
+
+        .gif-list {
+            display: none;
+            margin: 20px 0;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .success-message {
+            display: none;
+            animation: popIn 0.5s ease-out;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-message h2 {
+            color: #ff1493;
+            font-size: 32px;
+            margin: 20px 0;
+        }
+
+        .success-message p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .question {
+                font-size: 18px;
+            }
+
+            .gif-container {
+                height: 250px;
+                margin: 20px 0;
+            }
+
+            button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .button-container {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts">💕 💕 💕</div>
+        <h1>Wait... I have a question!</h1>
+        <p class="subtitle">Answer truthfully </p>
+        
+        <div class="gif-container" id="gifContainer">
+            <img id="gifImage" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjJ0cjR6YW5uaWU3dDJpNmJncWswaTlyb2hxZjR0NG9tbjJ5dHR2ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x28cIQSn19Tbi/giphy.gif" alt="cute animation">
+        </div>
+
+        <div class="question" id="question">
+            Will you be my Valentine? 🌹
+        </div>
+
+        <div class="button-container" id="buttonContainer">
+            <button class="btn-yes" onclick="handleYes()">Yes! 💕</button>
+            <button class="btn-no" onclick="handleNo()">No way</button>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <h2>🎉🎉🎉🎉🎉</h2>
+            <p>Aww I knew you'd say yes pookie💕</p>
+        </div>
+
+        <div class="gif-list" id="gifList">
+            <p>GIF sources: Giphy</p>
+        </div>
+    </div>
+
+    <script>
+        const gifs = [
+            'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2I0MjJiNXA1bmk5MG55Zmd4dm8xZWc0Y2phd3Rpc2RpcHBraTRkaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AAmXHAfy3WT6iTjDy6/giphy.gif',
+            'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmlmdjJzdGZvdHVva2l0ZTYxeG1sd3NnY2Q4ZnM2ZzJnZGJhNDQ3bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKHj9L4PeXa5nY4/giphy.gif',
+            'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2sxcnljcG9nemlpM3FhdXh5cG10N3dkZWQ0Ym95N3R3YXJzZXNkdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OQPaPWcW7YoBcYJGE7/giphy.gif',
+            'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHc4M25oeHB2Y2N0eWd4Y2NldW16NmNlb2cxMGNzbmxkZjhicXEwbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Zl7u48zLVFgLpRwq6f/giphy.gif',
+            'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnNhc2R1NmthaDM0aW9mdG5nZjl6MzE1cGRubm1icGIxemo0NDJlbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xM3ptQtRagYCs/giphy.gif'
+        ];
+
+        const mainGif = 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjJ0cjR6YW5uaWU3dDJpNmJncWswaTlyb2hxZjR0NG9tbjJ5dHR2ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x28cIQSn19Tbi/giphy.gif';
+
+        let noClicks = 0;
+        const noMessages = [
+            'No way',
+            'Are you sure? 🥺',
+            'Really really sure? 👉👈',
+            'Pretty pretty sure? 💔',
+            'Don\'t break my heart! 😭',
+            'One more chance? 🙏',
+            'I know you said yes, you\'re just shy!',
+            'Okay, clicking yes for you! 😊'
+        ];
+
+        function handleYes() {
+            showSuccess();
+        }
+
+        function handleNo() {
+            noClicks++;
+            const noButton = event.target;
+            const gifImage = document.getElementById('gifImage');
+            
+            // Change button text based on clicks
+            if (noClicks < noMessages.length) {
+                noButton.textContent = noMessages[noClicks];
+                
+                // Start rotating GIFs on first No click and every click after
+                gifImage.src = gifs[Math.floor(Math.random() * gifs.length)];
+                
+                // Make button harder to click
+                if (noClicks > 2) {
+                    noButton.style.position = 'relative';
+                    noButton.style.left = (Math.random() - 0.5) * 100 + 'px';
+                    noButton.style.top = (Math.random() - 0.5) * 50 + 'px';
+                }
+            } else {
+                // After enough clicks, auto-select yes
+                showSuccess();
+            }
+        }
+
+        function showSuccess() {
+            // Hide the question and buttons
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('buttonContainer').style.display = 'none';
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Change to success GIF
+            document.getElementById('gifImage').src = 'https://media.giphy.com/media/g9GWutsxPsKf2/giphy.gif';
+            
+            // Create confetti
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#ff1493', '#ff69b4', '#ffd700', '#ff6347', '#ff8c00'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Keep the main GIF on load - don't randomize
+        document.getElementById('gifImage').src = mainGif;
+    </script>
+</body>
+</html>
